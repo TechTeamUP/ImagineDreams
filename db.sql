@@ -68,6 +68,20 @@ CREATE TABLE IF NOT EXISTS category(
     PRIMARY KEY (category_id)
 );
 
+CREATE TABLE IF NOT EXISTS department(
+    department_id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    PRIMARY KEY(department_id)
+);
+
+CREATE TABLE IF NOT EXISTS municipality(
+    municipality_id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    department_id INT NUTT,
+    PRIMARY KEY(municipality_id),
+    FOREIGN KEY (department_id) REFERENCES department(department_id)
+);
+
 
 
 
