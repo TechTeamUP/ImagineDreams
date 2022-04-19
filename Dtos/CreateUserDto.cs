@@ -15,18 +15,7 @@ namespace ImagineDreams.Dtos
         public DateTime Birth { get; set; }
         [RegularExpression("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", ErrorMessage = "It is not a correct email.")]
         public string Email { get; set; }
-        public string Type { get; set; }
+        [Required(ErrorMessage = "The Password must be specified.")]
+        public string Password { get; set; }
     }
 }
-// 
-// {
-//   "id": 1120380115,
-//   "firstName": "Willintong",
-//   "lastName": "Ramirez Rodriguez",
-//   "address": "Carrera 4 #5-66",
-//   "phone": "3222292310",
-//   "birth": "2022-04-19T00:51:02.807Z",
-//   "email": "willintong@hotmail.com",
-//   "type": "Customer"
-
-// }
