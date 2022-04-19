@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using ImagineDreams.Dtos;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Security.Cryptography;
-using System.IO;
 using System.Text;
 
 namespace ImagineDreams.Repositories
@@ -13,7 +12,7 @@ namespace ImagineDreams.Repositories
         {
             SHA256 sha256 = SHA256Managed.Create();
             ASCIIEncoding encoding = new ASCIIEncoding();
-            byte [] stream = null;
+            byte[] stream = null;
             StringBuilder sb = new StringBuilder();
             stream = sha256.ComputeHash(encoding.GetBytes(str));
             for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
@@ -39,7 +38,7 @@ namespace ImagineDreams.Repositories
             UserEntity user = await Users.FirstOrDefaultAsync(x => x.Email == mail);
             if (user != null)
             {
-                user = await Users.FirstOrDefaultAsync(x => x.Password == password);
+                UserEntity _user = await Users.FirstOrDefaultAsync(x => x.Password == password);
                 if (user != null)
                 {
                     return user;

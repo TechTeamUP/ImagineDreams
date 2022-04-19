@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users(
     PRIMARY KEY(id)
 );
 INSERT INTO users(id,firstname, lastname, address, phone, email, password) VALUES (1120380115, "Willintong", "Ramirez", "carera 2b #18-18", "3222292310", "willintong@admin.com","contrasena");
-
+DROP TABLE IF EXISTS product;
 CREATE TABLE IF NOT EXISTS product(
     product_id INT AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,

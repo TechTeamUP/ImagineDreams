@@ -19,7 +19,7 @@ namespace ImagineDreams.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> login(string mail, string password)
         {
-            UserEntity result = await _userDatabaseContext.login(mail, password);
+            UserEntity result = await _userDatabaseContext.login(mail, _userDatabaseContext.getSHA(password));
             if(result == null)
             {
                 return Unauthorized(result);
