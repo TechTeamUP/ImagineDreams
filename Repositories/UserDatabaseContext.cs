@@ -1,11 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using ImagineDreams.Dtos;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace ImagineDreams.Repositories
 {
     public class UserDatabaseContext : DbContext
     {
+        public string getSHA(string str)
+        {
+            SHA256 sha256 = SHA256Managed.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte [] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = sha256.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
+        }
+
         public UserDatabaseContext(DbContextOptions<UserDatabaseContext> options) : base(options)
         { }
         public DbSet<UserEntity> Users { get; set; }
@@ -45,7 +59,7 @@ namespace ImagineDreams.Repositories
                 Phone = userDto.Phone,
                 Birth = userDto.Birth,
                 Email = userDto.Email,
-                Password = userDto.Password
+                Password = getSHA(userDto.Password)
 
             };
 
