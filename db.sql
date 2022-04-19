@@ -1,15 +1,17 @@
-#Creación de la base de datos.
-DROP DATABASE testing;
-CREATE DATABASE IF NOT EXISTS testing;
+--Creación de la base de datos.
+DROP DATABASE IF EXISTS imaginedreams;
+CREATE DATABASE IF NOT EXISTS imaginedreams;
 
-#Creación de las tablas.
+--Creación de las tablas.
+DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-    user_id INT NOT NULL,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    adress VARCHAR(255) NOT NULL,
+    id INT NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     phone VARCHAR(30) NOT NULL,
-    birth DATE NOT NULL,
+    birth DATE,
+    email VARCHAR(60) NOT NULL,
     type VARCHAR(20) DEFAULT 'CUSTOMER',
     PRIMARY KEY(id)
 );
