@@ -1,0 +1,115 @@
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 1),
+        0 1px 1px 0 rgba(0, 0, 0, 1),
+        0 1px 3px 0 rgba(0, 0, 0, 1);
+    display: center;
+    fill: currentColor;
+    height: 500px;
+    width: 816px;
+    background-color: white;
+}
+
+.mat-card-header {
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    width: fit-content;
+
+}
+
+.main-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs {
+    background-color: rgb(219, 254, 255);
+    height: 40px;
+    width: 300px;
+    border-radius: 20px;
+    border-color: transparent;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+.mat-card-actions {
+    text-align: center;
+}
+
+.buttons-login {
+    background-color: rgb(105, 26, 179);
+    border-radius: 20px;
+    width: 150px;
+    height: 40px;
+}
+
+.buttons-signUp {
+    background-color: white;
+    border-radius: 20px;
+    width: 150px;
+    height: 40px;
+}
+
+
+.colum1 {
+    position: flex;
+    margin-left: 300px;
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    align-items: center;
+}
+
+.colum2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(105, 26, 179);
+    width: 300px;
+    height: 500px;
+    text-align: center;
+    align-items: center;
+}
+
+.center {
+    text-align: center;
+    align-items: center;
+    
+}
+.center2 {
+    min-height: fit-content;
+    margin-top: 50%;
+}
+
+.title {
+    font-size: 36px;
+}
+
+.subtitle {
+    font-size: 19px;
+    color: black;
+}
+
+.or {
+    font-size: 14px;
+    color: lightgrey;
+}
+
+.forms {
+    display: flex;
+    width: 400px;
+    background-color: #0a74ee;
+    text-align: center;
+    align-items: center;
+    margin: 0px auto;
+}
+
+::ng-deep .mat-input-wrapper {
+    height: 40px;
+}
+
+.mat-input-element {
+    text-align: left;
+}
