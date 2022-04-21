@@ -1,115 +1,110 @@
-.mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 1),
-        0 1px 1px 0 rgba(0, 0, 0, 1),
-        0 1px 3px 0 rgba(0, 0, 0, 1);
-    display: center;
-    fill: currentColor;
-    height: 500px;
-    width: 816px;
-    background-color: white;
+.modal-content {
+    border: none;
 }
 
-.mat-card-header {
-    text-align: center;
-    align-content: center;
-    margin: 0 auto;
-    width: fit-content;
-
+.modal-dialog {
+    max-width: 54.65vw;
 }
 
-.main-div {
-    height: 100vh;
+.main-container {
+    height: 61.62vh;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.inputs {
-    background-color: rgb(219, 254, 255);
-    height: 40px;
-    width: 300px;
-    border-radius: 20px;
-    border-color: transparent;
-    padding: 1rem;
-    font-size: 14px;
+.column1 {
+    width: 38.50vw;
+    height: 100%;
+    background-color: #6D29D4
+    ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.mat-card-actions {
-    text-align: center;
-}
-
-.buttons-login {
-    background-color: rgb(105, 26, 179);
-    border-radius: 20px;
-    width: 150px;
-    height: 40px;
-}
-
-.buttons-signUp {
+.column2 {
+    width: 61.50vw;
+    height: 100%;
     background-color: white;
-    border-radius: 20px;
-    width: 150px;
-    height: 40px;
-}
-
-
-.colum1 {
-    position: flex;
-    margin-left: 300px;
-    width: 500px;
-    height: 500px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.colum2 {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-color: rgb(105, 26, 179);
-    width: 300px;
-    height: 500px;
-    text-align: center;
-    align-items: center;
+.social-media-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* align-items: center; */
+    width: 20%;
+    /* height: 100%; */
 }
 
-.center {
-    text-align: center;
+.form {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    
-}
-.center2 {
-    min-height: fit-content;
-    margin-top: 50%;
 }
 
 .title {
-    font-size: 36px;
+    font-size: 2.25rem;
+    font-weight: bold;
 }
 
 .subtitle {
-    font-size: 19px;
-    color: black;
+    font-size: 1.33rem;
 }
 
-.or {
-    font-size: 14px;
-    color: lightgrey;
+.input {
+    width: 22.71vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    background-color: rgba(41, 143, 212, .09);
+    font-size: 1rem;
+    color: #636363;
+    margin-top: 20px;
 }
 
-.forms {
-    display: flex;
-    width: 400px;
-    background-color: #0a74ee;
+.btn {
+    width: 7.85vw;
+    border-radius: 20px;
+    margin-top: 28px;
+}
+
+.float-left {
+    margin-top: 21px;
+    margin-left: 21px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.33rem;
+}
+
+.float-right {
+    margin-top: 21px;
+    margin-right: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.center-text {
     text-align: center;
+}
+
+.white-text {
+    color: white;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin: 0px auto;
-}
-
-::ng-deep .mat-input-wrapper {
-    height: 40px;
-}
-
-.mat-input-element {
-    text-align: left;
 }
