@@ -19,9 +19,5 @@ a:hover{
   font-family: 'Poppins', sans-serif;
 }
 
-.titulo{
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Poppins', sans-serif; }
