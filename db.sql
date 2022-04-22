@@ -1,19 +1,13 @@
-
 DROP DATABASE IF EXISTS imaginedreams;
 CREATE DATABASE IF NOT EXISTS imaginedreams;
 SELECT DATABASE ();
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-    id INT NOT NULL,
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    phone VARCHAR(30) NOT NULL,
-    birth DATE DEFAULT CURRENT_DATE,
+    id INT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(100) NOT NULL,
     email VARCHAR(60) NOT NULL,
     password VARCHAR(60) NOT NULL,
-    type ENUM('ADMIN', 'CUSTOMER') DEFAULT ('CUSTOMER'),
     PRIMARY KEY(id)
 );
 INSERT INTO users(id,firstname, lastname, address, phone, email, password) VALUES (1120380115, "Willintong", "Ramirez", "carera 2b #18-18", "3222292310", "willintong@admin.com","contrasena");

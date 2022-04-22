@@ -6,7 +6,7 @@ namespace ImagineDreams.Controllers
 {
     [ApiController]
     [Route("service/login")]
-    public class UserLoginController: Controller
+    public class UserLoginController : Controller
     {
         private readonly UserDatabaseContext _userDatabaseContext;
         public UserLoginController(UserDatabaseContext userDatabaseContext)
@@ -19,12 +19,16 @@ namespace ImagineDreams.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> login(string mail, string password)
         {
-            UserEntity result = await _userDatabaseContext.login(mail, _userDatabaseContext.getSHA(password));
-            if(result == null)
+            try
             {
-                return Unauthorized(result);
+                UserEntity result = await _userDatabaseContext.login(mail, password);
+                return new OkObjectResult(result.ToDto());
             }
-            return new ObjectResult(result);
+            catch (Exception ex)
+            {
+
+                return Unauthorized(ex.Message);
+            }
         }
     }
 }

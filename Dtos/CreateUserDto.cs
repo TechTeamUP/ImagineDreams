@@ -4,18 +4,11 @@ namespace ImagineDreams.Dtos
 {
     public class CreateUserDto
     {
-        [Required(ErrorMessage = "The ID must be specified.")]
-        public long Id { get; set; }
-        [Required(ErrorMessage = "The Firstname must be specified.")]
-        public string FirstName { get; set; }
-        [Required(ErrorMessage = "The Lastname must be specified.")]
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public DateTime Birth { get; set; }
+        [Required(ErrorMessage = "The Fullname must be specified.")]
+        public string Fullname { get; set; } = string.Empty;
         [RegularExpression("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", ErrorMessage = "It is not a correct email.")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         [Required(ErrorMessage = "The Password must be specified.")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
     }
 }
