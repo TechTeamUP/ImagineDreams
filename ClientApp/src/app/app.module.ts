@@ -15,6 +15,8 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignUpComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { AboutComponent } from './components/pages/about/about.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -25,11 +27,13 @@ import { HomeComponent } from './components/pages/home/home.component';
     FooterComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    AppRoutingModule,
     MatDialogModule,
     MatInputModule, 
     MatButtonModule, 
