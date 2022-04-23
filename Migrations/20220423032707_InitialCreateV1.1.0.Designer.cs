@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImagineDreams.Migrations
 {
-    [DbContext(typeof(UserDatabaseContext))]
+    [DbContext(typeof(DatabaseConentext))]
     [Migration("20220423032707_InitialCreateV1.1.0")]
     partial class InitialCreateV110
     {

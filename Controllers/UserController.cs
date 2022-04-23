@@ -38,7 +38,7 @@ namespace ImagineDreams.Controllers
             try
             {
                 UserEntity result = await _userServices.login(mail, password);
-                return new OkObjectResult(result.ToDto());
+                return new OkObjectResult(result.ToModel());
             }
             catch (Exception ex)
             {
@@ -53,7 +53,7 @@ namespace ImagineDreams.Controllers
             try
             {
                 UserEntity result = await _userServices.getUser(email);
-                return new ObjectResult(result.ToDto());
+                return new ObjectResult(result.ToModel());
             }
             catch (Exception ex)
             {

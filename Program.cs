@@ -16,7 +16,7 @@ builder.Services.AddRouting(routing => routing.LowercaseUrls = true);
 
 //Add services to connect to the database.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<UserDatabaseContext>(options =>
+builder.Services.AddDbContext<DatabaseConentext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
@@ -36,6 +36,7 @@ builder.Services.AddCors(options =>
 
 //add services to use case dependencies
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IProductServices, ProductServices>();
 
 var app = builder.Build();
 

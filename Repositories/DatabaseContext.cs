@@ -6,9 +6,9 @@ using ImagineDreams.Services;
 
 namespace ImagineDreams.Repositories
 {
-    public class UserDatabaseContext : DbContext
+    public class DatabaseConentext : DbContext
     {
-        public UserDatabaseContext(DbContextOptions<UserDatabaseContext> options) : base(options)
+        public DatabaseConentext(DbContextOptions<DatabaseConentext> options) : base(options)
         {  }
         public DbSet<UserEntity> Users { get; set; }
 

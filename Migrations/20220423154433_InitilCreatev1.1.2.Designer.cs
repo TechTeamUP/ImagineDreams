@@ -3,6 +3,7 @@ using System;
 using ImagineDreams.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImagineDreams.Migrations
 {
     [DbContext(typeof(DatabaseConentext))]
-    partial class UserDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220423154433_InitilCreatev1.1.2")]
+    partial class InitilCreatev112
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

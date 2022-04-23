@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Repositories;
 using ImagineDreams.Models;
+using ImagineDreams.Services;
+using ImagineDreams.Mapping;
 
 namespace ImagineDreams.Controllers
 {   
@@ -8,24 +10,24 @@ namespace ImagineDreams.Controllers
     [Route("service/product")]
     public class ProductController: Controller
     {
-        private readonly UserDatabaseContext _ProductDatabaseContext;
-        public ProductController(UserDatabaseContext productDatabaseContext)
+        private readonly IProductServices _productServices;
+        public ProductController(IProductServices productServices)
         {
-            _ProductDatabaseContext = productDatabaseContext;
+            _productServices = productServices;
         }
 
-        // [HttpPost("create")]
-        // public async Task<IActionResult> createProduct(Product product)
-        // {
-        //     try
-        //     {
-        //         ProductEntity response = await _ProductDatabaseContext.createProduct(product);
-        //         return new ObjectResult(response);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
+        [HttpPost("create")]
+        public async Task<IActionResult> createProduct(Product product)
+        {
+            try
+            {
+                ProductEntity response = await _productServices.createProduct(product);
+                return new ObjectResult(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

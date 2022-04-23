@@ -16,8 +16,8 @@ namespace ImagineDreams.Services
 
     public class UserServices : IUserServices
     {
-        private readonly UserDatabaseContext _userDatabaseContext;
-        public UserServices(UserDatabaseContext userDatabaseContext)
+        private readonly DatabaseConentext _userDatabaseContext;
+        public UserServices(DatabaseConentext userDatabaseContext)
         {
             _userDatabaseContext = userDatabaseContext;
         }

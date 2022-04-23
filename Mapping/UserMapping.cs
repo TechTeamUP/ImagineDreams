@@ -11,7 +11,7 @@ namespace ImagineDreams.Mapping
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
 
-        public User ToDto()
+        public User ToModel()
         {
             return new User()
             {
