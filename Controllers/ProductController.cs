@@ -29,5 +29,50 @@ namespace ImagineDreams.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        
+        [HttpGet("list")]
+        public async Task<IActionResult> listProduct()
+        {
+            try
+            {
+                var response = await _productServices.listProduct();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> getProductByName(int id)
+        {
+            try
+            {
+                var response = await _productServices.getProduct(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {   
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPut("update")]
+        public async Task<IActionResult> updateProduct(Product product)
+        {
+            try
+            {
+                var response = await _productServices.updateProduct(product);
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -23,6 +23,9 @@ namespace ImagineDreams.Models
 
         public DateTime Update_Date { get; set; } = DateTime.Now;
 
+        [Required(ErrorMessage = "The UserID must be specified.")]
+        public int UserId { get; set; }
+
         [Required(ErrorMessage = "The Category must be specified.")]
         public int CategoryId { get; set; }
 

@@ -36,7 +36,6 @@ namespace ImagineDreams.Services
         {
             string result = string.Empty;
             byte[] decryted = Convert.FromBase64String(str);
-            //result = System.Text.Encoding.Unicode.GetString(decryted, 0, decryted.ToArray().Length);
             result = System.Text.Encoding.Unicode.GetString(decryted);
             return result;
         }
