@@ -1,4 +1,3 @@
-using ImagineDreams.Mapping;
 using ImagineDreams.Repositories;
 using ImagineDreams.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +9,10 @@ namespace ImagineDreams.Services
     public interface IProductServices
     {
         Task<ProductEntity> getProduct(int id);
-        Task<ProductEntity> createProduct(Product product);
+        Task<ProductEntity> createProduct(CreateProduct product);
         Task<IActionResult> listProduct();
-        Task<Product> updateProduct(Product product);
+        Task<ProductEntity> updateProduct(ProductModel product);
+        Task<bool> deleteProduct(int id);
     }
 
     public class ProductServices : IProductServices
@@ -31,7 +31,7 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<ProductEntity> createProduct(Product product)
+        public async Task<ProductEntity> createProduct(CreateProduct product)
         {
             ProductEntity entity = new ProductEntity()
             {
@@ -39,12 +39,13 @@ namespace ImagineDreams.Services
                 Description = product.Description,
                 Price = product.Price,
                 Stock = product.Stock,
-                CategoryId = product.CategoryId
+                CategoryId = product.CategoryId,
+                UserId = product.UserId
             };
 
             EntityEntry<ProductEntity> response = await _databaseConentext.Products.AddAsync(entity);
             await _databaseConentext.SaveChangesAsync();
-            return await getProduct(response.Entity.Id);
+            return await getProduct(response.Entity.Id ?? throw new Exception("The Product user does not exist."));
         }
 
 
@@ -55,7 +56,7 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<Product> updateProduct(Product product)
+        public async Task<ProductEntity> updateProduct(ProductModel product)
         {
             var entity = await getProduct(product.Id);
 
@@ -69,9 +70,26 @@ namespace ImagineDreams.Services
             entity.Price = product.Price;
             entity.Stock = product.Stock;
             entity.CategoryId = product.CategoryId;
+            entity.UserId = product.UserId;
 
             _databaseConentext.Update(entity);
-            return entity.ToModel();
+            await _databaseConentext.SaveChangesAsync();
+            return entity;
+        }
+
+
+        public async Task<bool> deleteProduct(int id)
+        {
+            ProductEntity product = await getProduct(id);
+
+            if(product == null)
+            {
+                return false;
+            }
+
+            _databaseConentext.Remove(product);
+            await _databaseConentext.SaveChangesAsync();
+            return true;
         }
     }
 }

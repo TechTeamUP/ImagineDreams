@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ImagineDreams.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using ImagineDreams.Mapping;
 using ImagineDreams.Repositories;
 
 namespace ImagineDreams.Services
@@ -60,7 +59,7 @@ namespace ImagineDreams.Services
         {
             UserEntity entity = new UserEntity()
             {
-                Fullname = user.Fullname = string.Empty,
+                Fullname = user.Fullname,
                 Email = user.Email.ToLower(),
                 Password = encrypt(user.Password)
             };

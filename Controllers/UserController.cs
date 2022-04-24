@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
-using ImagineDreams.Repositories;
-using ImagineDreams.Mapping;
 using ImagineDreams.Services;
 
 namespace ImagineDreams.Controllers
@@ -25,9 +23,9 @@ namespace ImagineDreams.Controllers
                 UserEntity result = await _userServices.createUser(user);
                 return new CreatedResult($"https://localhost:7200/api/customer/{result.Email}", null);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(e.Message);
             }
         }
 

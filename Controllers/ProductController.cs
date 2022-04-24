@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ImagineDreams.Repositories;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
-using ImagineDreams.Mapping;
+
 
 namespace ImagineDreams.Controllers
 {   
@@ -17,12 +16,12 @@ namespace ImagineDreams.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> createProduct(Product product)
+        public async Task<IActionResult> createProduct(CreateProduct product)
         {
             try
             {
                 ProductEntity response = await _productServices.createProduct(product);
-                return new ObjectResult(response);
+                return new ObjectResult("Product created successfully.");
             }
             catch (Exception ex)
             {
@@ -41,7 +40,7 @@ namespace ImagineDreams.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("There are not products to display.");
             }
         }
 
@@ -54,24 +53,39 @@ namespace ImagineDreams.Controllers
                 var response = await _productServices.getProduct(id);
                 return Ok(response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {   
-                return BadRequest(ex.Message);
+                return BadRequest("Producto not found.");
             }
         }
 
 
         [HttpPut("update")]
-        public async Task<IActionResult> updateProduct(Product product)
+        public async Task<IActionResult> updateProduct(ProductModel product)
         {
             try
             {
                 var response = await _productServices.updateProduct(product);
-                return Ok(product);
+                return Ok("Product update successfully.");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> deleteProduct(int id)
+        {
+            try
+            {
+                var p = await _productServices.deleteProduct(id);
+                return Ok("Product removed successfully.");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Product not found.");
             }
         }
     }
