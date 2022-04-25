@@ -22,11 +22,11 @@
     margin-left: 20px;
 }
 
-.infoImage{
+/* .infoImage{
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 .ShoopingCart{
     position: absolute;

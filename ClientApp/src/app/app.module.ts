@@ -18,6 +18,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemDetailsComponent } from './components/pages/item-details/item-details.component';
+import { SearchComponent } from './components/pages/search/search.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ItemDetailsComponent } from './components/pages/item-details/item-detai
     SignUpComponent,
     HomeComponent,
     AboutComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
