@@ -10,7 +10,6 @@ namespace ImagineDreams.Services
         Task<UserEntity> getUser(string email);
         Task<UserEntity> login(string email, string password);
         Task<UserEntity> createUser(CreateUser user);
-        string encrypt(string str);
     }
 
     public class UserServices : IUserServices
@@ -42,7 +41,6 @@ namespace ImagineDreams.Services
 
         public async Task<UserEntity> getUser(string email)
         {
-            
             var userP = await _userDatabaseContext.Users.FirstOrDefaultAsync(x => x.Email == email);
             return userP ?? throw new Exception("The provided user does not exist.");
         }
@@ -50,7 +48,7 @@ namespace ImagineDreams.Services
 
         public async Task<UserEntity> login(string email, string password)
         {
-            UserEntity? user = await _userDatabaseContext.Users.FirstOrDefaultAsync(x => x.Email == email.ToLower() && x.Password == encrypt(password));
+            var user = await _userDatabaseContext.Users.FirstOrDefaultAsync(x => x.Email == email.ToLower() && x.Password == encrypt(password));
             return user ?? throw new Exception("The Email and/or password are not correct.");
         }
 
