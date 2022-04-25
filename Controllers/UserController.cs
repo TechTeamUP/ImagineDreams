@@ -23,9 +23,9 @@ namespace ImagineDreams.Controllers
                 UserEntity result = await _userServices.createUser(user);
                 return new CreatedResult($"https://localhost:7200/api/customer/{result.Email}", null);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return BadRequest(e.Message);
+                return BadRequest("Email is already in use.");
             }
         }
 

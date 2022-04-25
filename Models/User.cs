@@ -16,12 +16,12 @@ namespace ImagineDreams.Models
         [StringLength(60)]
         public string Password { get; set; } = default!;
 
-        public DateTime Created_Date { get; set; }
+        public DateTime Created_Date { get; set; } = DateTime.Now;
     }
 
     public class UserEntity
     {
-        [Key]
+        [Key,]
         public int? Id { get; set; }
 
         [StringLength(60)]
@@ -32,6 +32,8 @@ namespace ImagineDreams.Models
 
         [StringLength(60)]
         public string Password { get; set; } = string.Empty;
+
+        public DateTime? Created_Date { get; set; } = DateTime.Now;
 
         public ICollection<ProductEntity> Product { get; set; } = default!;
 
