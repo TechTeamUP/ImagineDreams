@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 
 namespace ImagineDreams.Controllers
@@ -21,6 +23,7 @@ namespace ImagineDreams.Controllers
             try
             {
                 ProductEntity response = await _productServices.createProduct(product);
+                HttpContext.Session.SetString("CustomerSession",JsonSerializer.Serialize(response));
                 return new ObjectResult("Product created successfully.");
             }
             catch (Exception ex)

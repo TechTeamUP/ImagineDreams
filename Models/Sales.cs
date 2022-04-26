@@ -16,12 +16,13 @@ namespace ImagineDreams.Models
 
         public DateTime Created_date { get; set; }
 
-        public string state {get; set; } = default!;
+        [ForeignKey("State")]   
+        public int StateId { get; set; }
 
-        [ForeignKey("UserIdBuyer")]
-        public int UserIdBuyer { get; set; }
+        [ForeignKey("Users")]
+        public int UserId { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey("Product")]
         public int ProductId { get; set; }
     }
 
@@ -38,13 +39,25 @@ namespace ImagineDreams.Models
 
         public DateTime Created_date { get; set; }
 
-        public string state {get; set; } = default!;
+        [ForeignKey("Users")]
+        public int UserId { get; set; }
 
-        [ForeignKey("UserIdBuyer")]
-        public int UserIdBuyer { get; set; }
-
-        [ForeignKey("ProductId")]
+        [ForeignKey("Product")]
         public int ProductId { get; set; }
+
+        [ForeignKey("State")]
+        public int StateId { get; set; }
+
+        public SalesModel ToModel()
+        {
+            return new SalesModel()
+            {
+                Quantity = Quantity,
+                StateId = StateId,
+                UserId = UserId,
+                ProductId = ProductId
+            };
+        }
     }
 
     public class CreateSale
@@ -54,8 +67,6 @@ namespace ImagineDreams.Models
 
         [Required]
         public float Total { get; set; }
-
-        public DateTime Created_date { get; set; }
 
         [Required]
         public int UserIdBuyer { get; set; }
