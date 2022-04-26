@@ -35,7 +35,8 @@ namespace ImagineDreams.Services
                 Total = sales.Total,
                 Created_date = sales.Created_date,
                 UserIdBuyer = sales.UserIdBuyer,
-                ProductId = sales.ProductId
+                ProductId = sales.ProductId,
+                state = "paid"
 
             };
 

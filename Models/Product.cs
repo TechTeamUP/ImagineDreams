@@ -77,9 +77,6 @@ namespace ImagineDreams.Models
     public class CreateProduct
     {
 
-        [Key]
-        public int Id { get; set; }
-
         [StringLength(60), Required]
         public string Name { get; set; } = default!;
 
