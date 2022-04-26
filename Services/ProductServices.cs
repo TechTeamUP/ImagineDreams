@@ -27,7 +27,7 @@ namespace ImagineDreams.Services
         public async Task<ProductEntity> getProduct(int id)
         {
             var product = await _databaseConentext.Products.FirstOrDefaultAsync(x => x.Id == id);
-            return product ?? throw new Exception("The Product user does not exist.");
+            return product ?? throw new Exception("The provided Product does not exist.");
         }
 
 
@@ -45,7 +45,7 @@ namespace ImagineDreams.Services
 
             EntityEntry<ProductEntity> response = await _databaseConentext.Products.AddAsync(entity);
             await _databaseConentext.SaveChangesAsync();
-            return await getProduct(response.Entity.Id ?? throw new Exception("The Product user does not exist."));
+            return await getProduct(response.Entity.Id ?? throw new Exception("The provided Product does not exist."));
         }
 
 
@@ -71,6 +71,7 @@ namespace ImagineDreams.Services
             entity.Stock = product.Stock;
             entity.CategoryId = product.CategoryId;
             entity.UserId = product.UserId;
+            entity.Update_Date = DateTime.Now;
 
             _databaseConentext.Update(entity);
             await _databaseConentext.SaveChangesAsync();

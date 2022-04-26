@@ -31,7 +31,7 @@
                     </div> 
                     <h2 class="subtitle">Or use your email registration</h2>
                     <h2 style="margin-top: 16px;">OR</h2>
-                    <form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+                    <form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp(); myForm.resetForm()" #myForm="ngForm">
                         <input class="input" type="text" placeholder="name" formControlName="name">
                         <input class="input" type="email" placeholder="email" formControlName="email">
                         <input class="input" type="password" placeholder="password" formControlName="password">
@@ -39,7 +39,7 @@
                             <input type="checkbox" id="acceptTerms" class="form-check-input"/>
                             <label for="acceptTerms" class="form-check-label">Accept all Terms & Conditions</label>
                         </div>
-                        <button class="btn btn-primary" style="background-color: #6D29D4; border: none;" >Sign Up</button>
+                        <button class="btn btn-primary" style="background-color: #6D29D4; border: none;">Sign Up</button>
                     </form>
                 </div>
             </div>
