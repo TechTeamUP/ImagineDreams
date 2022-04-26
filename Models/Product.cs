@@ -49,6 +49,7 @@ namespace ImagineDreams.Models
         public int Stock { get; set; } = default!;
 
         public DateTime Created_Date { get; set; } = DateTime.Now;
+
         public DateTime Update_Date { get; set; } = DateTime.Now;
 
         [ForeignKey("Users")]
@@ -56,6 +57,8 @@ namespace ImagineDreams.Models
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+
+        public ICollection<SalesEntity> Sale { get; set; } = default!;
 
         public ProductModel ToModel()
         {
@@ -65,6 +68,7 @@ namespace ImagineDreams.Models
                 Description = Description,
                 Price = Price,
                 Stock = Stock,
+                Img = Img,
                 CategoryId = CategoryId
             };
         }
@@ -72,9 +76,6 @@ namespace ImagineDreams.Models
 
     public class CreateProduct
     {
-
-        [Key]
-        public int Id { get; set; }
 
         [StringLength(60), Required]
         public string Name { get; set; } = default!;

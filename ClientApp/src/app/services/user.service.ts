@@ -7,11 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private myAppYrl = 'https://localhost:7200/service'
+  private signUpURL = 'https://localhost:7200/service'
+  private logInURL = 'https://localhost:7200/service'
 
   constructor(private http: HttpClient) { }
 
   signUp(data: any): Observable<any> {
-    return this.http.post(this.myAppYrl + "/user/sign_up", data)
+    return this.http.post(this.signUpURL + "/user/sign_up", data)
+  }
+
+  logIn(email:string, password:string, data: any)
+  {
+    return this.http.post(this.logInURL + `/user/log_in?mail=${email}&password=${password}`,data)
   }
 }

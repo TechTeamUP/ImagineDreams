@@ -33,9 +33,11 @@ namespace ImagineDreams.Models
         [StringLength(60)]
         public string Password { get; set; } = string.Empty;
 
-        public DateTime? Created_Date { get; set; } = DateTime.Now;
+        public DateTime Created_Date { get; set; } = DateTime.Now;
 
         public ICollection<ProductEntity> Product { get; set; } = default!;
+        
+        public ICollection<SalesEntity> Sale { get; set; } = default!;
 
         public UsersModel ToModel()
         {

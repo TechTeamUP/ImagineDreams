@@ -37,6 +37,8 @@ builder.Services.AddCors(options =>
 //add services to use case dependencies
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IProductServices, ProductServices>();
+builder.Services.AddScoped<ISalesServices, SalesServices>();
+
 
 //Add services to cache
 builder.Services.AddDistributedMemoryCache();
@@ -63,7 +65,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
