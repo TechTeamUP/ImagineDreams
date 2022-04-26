@@ -1,0 +1,144 @@
+.modal-dialog {
+    max-width: 55vw;
+}
+
+.modal-content {
+    border: none;
+    position: relative;
+}
+
+.main-container {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3.8vw;
+    padding-right: 3.8vw;
+    padding-top: 4.37vh;
+    padding-bottom: 4.37vh;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.item-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.item-details {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.inc-dec-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input {
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.margin-none {
+    margin: 0;
+}
+
+.modal-title {
+    font-size: 1.563rem;
+    font-weight: 800;
+}
+
+.item-name {
+    font-size: 1.438rem;
+    font-weight: 600;
+}
+
+.item-ref {
+    font-size: 0.938rem;
+    font-weight: 400;
+}
+
+.actions-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    position: absolute;
+    /* bottom: 4.37vh; */
+    /* background-color: blueviolet; */
+    bottom: 0;
+    padding-left: 3.8vw;
+    padding-right: 3.8vw;
+    padding-bottom: 2vh;
+}
+
+.btn {
+    width: 7.85vw;
+    border-radius: 20px;
+    background-color: #0F66BE;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.total-price {
+    font-size: 1.563rem;
+    font-weight: 500;
+}
+
+.price {
+    font-weight: 700;
+}
+
+.total-items {
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.float-right {
+    margin-top: 21px;
+    margin-right: 21px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+

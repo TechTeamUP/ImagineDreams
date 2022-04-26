@@ -96,6 +96,8 @@
     white-space: nowrap;
 }
 
+/*----------------------------------------*/
+
 .inc-dec-container {
     display: flex;
     flex-direction: row;
@@ -128,6 +130,8 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/*----------------------------------------*/
 
 .item-review {
     width: 100%;
