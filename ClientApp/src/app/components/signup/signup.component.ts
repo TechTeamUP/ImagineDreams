@@ -29,10 +29,8 @@ export class SignUpComponent implements OnInit {
 
     this._UserService.signUp(body).subscribe(data => {
       var closeBtn = document.getElementById("signUpModal");
-      closeBtn?.setAttribute('class', 'modal fade');
-      closeBtn?.setAttribute('aria-hidden', 'true');
-      closeBtn?.setAttribute('style', 'display: none');
-
+      closeBtn?.click();
+      
     }, error => {
       console.log(error)
     }

@@ -9,11 +9,14 @@ namespace ImagineDreams.Repositories
     {
         public DatabaseConentext(DbContextOptions<DatabaseConentext> options) : base(options)
         {  }
-        public DbSet<UserEntity> Users { get; set; }
+        
+        public DbSet<UserEntity> Users { get; set; } = default!;
 
-        public DbSet<ProductEntity> Products { set; get; }  
+        public DbSet<ProductEntity> Products { set; get; } = default!;
 
-        public DbSet<CategoryEntity> Category { set; get; }
+        public DbSet<CategoryEntity> Categorys { set; get; } = default!;
+
+        public DbSet<SalesEntity> Sales { set; get; } = default!;
 
     }
 }

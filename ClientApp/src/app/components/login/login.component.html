@@ -24,9 +24,9 @@
                         </svg>
                     </div>
                     <h2 style="margin-top: 16px;">OR</h2>
-                    <form class="form">
-                        <input class="input" type="text" placeholder="email">
-                        <input class="input" type="password" placeholder="password">
+                    <form class="form" [formGroup]="loginForm" (ngSubmit)="logIn(); myForm.resetForm()" #myForm="ngForm">
+                        <input class="input" type="email" placeholder="email" formControlName="email">
+                        <input class="input" type="password" placeholder="password" formControlName="password">
                         <button class="btn btn-primary">Sign In</button>
                     </form>
                 </div>

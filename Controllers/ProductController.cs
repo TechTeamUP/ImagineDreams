@@ -38,7 +38,7 @@ namespace ImagineDreams.Controllers
                 var response = await _productServices.listProduct();
                 return Ok(response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest("There are not products to display.");
             }

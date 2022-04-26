@@ -38,6 +38,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IProductServices, ProductServices>();
 
+
 //Add services to cache
 builder.Services.AddDistributedMemoryCache();
 

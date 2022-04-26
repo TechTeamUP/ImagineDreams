@@ -37,7 +37,7 @@ namespace ImagineDreams.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("ImagineDreams.Models.ProductEntity", b =>
@@ -93,13 +93,53 @@ namespace ImagineDreams.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("ImagineDreams.Models.SalesEntity", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created_date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("ProductEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("UserEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserIdBuyer")
+                        .HasColumnType("int");
+
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductEntityId");
+
+                    b.HasIndex("UserEntityId");
+
+                    b.ToTable("Sales");
+                });
+
             modelBuilder.Entity("ImagineDreams.Models.UserEntity", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created_Date")
+                    b.Property<DateTime>("Created_Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
@@ -133,14 +173,32 @@ namespace ImagineDreams.Migrations
                         .HasForeignKey("UserEntityId");
                 });
 
+            modelBuilder.Entity("ImagineDreams.Models.SalesEntity", b =>
+                {
+                    b.HasOne("ImagineDreams.Models.ProductEntity", null)
+                        .WithMany("Sale")
+                        .HasForeignKey("ProductEntityId");
+
+                    b.HasOne("ImagineDreams.Models.UserEntity", null)
+                        .WithMany("Sale")
+                        .HasForeignKey("UserEntityId");
+                });
+
             modelBuilder.Entity("ImagineDreams.Models.CategoryEntity", b =>
                 {
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ImagineDreams.Models.ProductEntity", b =>
+                {
+                    b.Navigation("Sale");
+                });
+
             modelBuilder.Entity("ImagineDreams.Models.UserEntity", b =>
                 {
                     b.Navigation("Product");
+
+                    b.Navigation("Sale");
                 });
 #pragma warning restore 612, 618
         }
