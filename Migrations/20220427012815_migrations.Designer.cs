@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImagineDreams.Migrations
 {
     [DbContext(typeof(DatabaseConentext))]
-    [Migration("20220426135101_migrations-test")]
-    partial class migrationstest
+    [Migration("20220427012815_migrations")]
+    partial class migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

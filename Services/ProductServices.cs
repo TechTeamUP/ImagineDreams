@@ -1,5 +1,7 @@
 using ImagineDreams.Repositories;
 using ImagineDreams.Models;
+using ImagineDreams.Request;
+using ImagineDreams.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ namespace ImagineDreams.Services
     public interface IProductServices
     {
         Task<ProductEntity> getProduct(int id);
-        Task<ProductEntity> createProduct(CreateProduct product);
+        Task<ProductCreateResponse> createProduct(ProductCreateRequest product);
         Task<IActionResult> listProduct();
         Task<ProductEntity> updateProduct(ProductModel product);
         Task<bool> deleteProduct(int id);
@@ -18,21 +20,50 @@ namespace ImagineDreams.Services
     public class ProductServices : IProductServices
     {
         private readonly DatabaseConentext _databaseConentext;
-        public ProductServices(DatabaseConentext databaseConentext)
+        private readonly IUserServices _userServices;
+        public ProductServices(DatabaseConentext databaseConentext, IUserServices userServices)
         {
             _databaseConentext = databaseConentext;
+            _userServices = userServices;
         }
 
 
         public async Task<ProductEntity> getProduct(int id)
         {
             var product = await _databaseConentext.Products.FirstOrDefaultAsync(x => x.Id == id);
-            return product ?? throw new Exception("The provided Product does not exist.");
+            if(product == null)
+            {
+                return product ?? throw new Exception("The provided product does not exist.");
+            }
+            return new ProductEntity()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Img = product.Img,
+                Price = product.Price,
+                Stock = product.Stock,
+                UserId = product.UserId,
+                CategoryId = product.CategoryId
+            };
         }
 
 
-        public async Task<ProductEntity> createProduct(CreateProduct product)
+        public async Task<ProductCreateResponse> createProduct(ProductCreateRequest product)
         {
+            var p = getProduct(product.Id);
+            if (p != null)
+            {
+                return new ProductCreateResponse()
+                {
+                    Code = 400,
+                    Create = false,
+                    Message = "The product already exists!",
+                    Error = new List<string>(){
+                        "Bad Request"
+                    }
+                };
+            }
             ProductEntity entity = new ProductEntity()
             {
                 Name = product.Name,
@@ -45,13 +76,19 @@ namespace ImagineDreams.Services
 
             EntityEntry<ProductEntity> response = await _databaseConentext.Products.AddAsync(entity);
             await _databaseConentext.SaveChangesAsync();
-            return await getProduct(response.Entity.Id ?? throw new Exception("The provided Product does not exist."));
+            return new ProductCreateResponse()
+            {
+                Code = 201,
+                Create = true,
+                Message = "Product created successfully!",
+                Error = new List<string>()
+            };
         }
 
 
         public async Task<IActionResult> listProduct()
         {
-            var response = _databaseConentext.Products.Select(x => x.ToModel()).ToList();
+            var response = _databaseConentext.Products.Select(x => x).ToList();
             return new ObjectResult(response);
         }
 
@@ -83,7 +120,7 @@ namespace ImagineDreams.Services
         {
             ProductEntity product = await getProduct(id);
 
-            if(product == null)
+            if (product == null)
             {
                 return false;
             }
