@@ -14,6 +14,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemDetailsComponent } from './components/pages/item-details/item-details.component';
 import { SearchComponent } from './components/pages/search/search.component';
+import { ImageComponent } from './images/image/image.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SearchComponent } from './components/pages/search/search.component';
     HomeComponent,
     AboutComponent,
     ItemDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
