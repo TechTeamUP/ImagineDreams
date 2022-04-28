@@ -4,8 +4,6 @@ namespace ImagineDreams.Request
 {
     public class ProductCreateRequest
     {
-        public int Id { get; set; }
-
         [StringLength(60), Required]
         public string Name { get; set; } = default!;
 
