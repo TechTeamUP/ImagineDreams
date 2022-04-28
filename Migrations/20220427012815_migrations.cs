@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ImagineDreams.Migrations
 {
-    public partial class migrations100 : Migration
+    public partial class migrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,21 @@ namespace ImagineDreams.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categorys", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "StatesSale",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatesSale", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -96,11 +111,11 @@ namespace ImagineDreams.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Total = table.Column<float>(type: "float", nullable: false),
                     Created_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    state = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserIdBuyer = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
+                    StateId = table.Column<int>(type: "int", nullable: false),
                     ProductEntityId = table.Column<int>(type: "int", nullable: true),
+                    StatesSaleId = table.Column<int>(type: "int", nullable: true),
                     UserEntityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -110,6 +125,11 @@ namespace ImagineDreams.Migrations
                         name: "FK_Sales_Products_ProductEntityId",
                         column: x => x.ProductEntityId,
                         principalTable: "Products",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Sales_StatesSale_StatesSaleId",
+                        column: x => x.StatesSaleId,
+                        principalTable: "StatesSale",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Sales_Users_UserEntityId",
@@ -135,6 +155,11 @@ namespace ImagineDreams.Migrations
                 column: "ProductEntityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sales_StatesSaleId",
+                table: "Sales",
+                column: "StatesSaleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sales_UserEntityId",
                 table: "Sales",
                 column: "UserEntityId");
@@ -147,6 +172,9 @@ namespace ImagineDreams.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "StatesSale");
 
             migrationBuilder.DropTable(
                 name: "Categorys");

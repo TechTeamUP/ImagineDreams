@@ -111,26 +111,45 @@ namespace ImagineDreams.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatesSaleId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Total")
                         .HasColumnType("float");
 
                     b.Property<int?>("UserEntityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserIdBuyer")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<string>("state")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductEntityId");
 
+                    b.HasIndex("StatesSaleId");
+
                     b.HasIndex("UserEntityId");
 
                     b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("ImagineDreams.Models.StatesSale", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StatesSale");
                 });
 
             modelBuilder.Entity("ImagineDreams.Models.UserEntity", b =>
@@ -179,6 +198,10 @@ namespace ImagineDreams.Migrations
                         .WithMany("Sale")
                         .HasForeignKey("ProductEntityId");
 
+                    b.HasOne("ImagineDreams.Models.StatesSale", null)
+                        .WithMany("Sale")
+                        .HasForeignKey("StatesSaleId");
+
                     b.HasOne("ImagineDreams.Models.UserEntity", null)
                         .WithMany("Sale")
                         .HasForeignKey("UserEntityId");
@@ -190,6 +213,11 @@ namespace ImagineDreams.Migrations
                 });
 
             modelBuilder.Entity("ImagineDreams.Models.ProductEntity", b =>
+                {
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("ImagineDreams.Models.StatesSale", b =>
                 {
                     b.Navigation("Sale");
                 });

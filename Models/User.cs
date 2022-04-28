@@ -30,7 +30,7 @@ namespace ImagineDreams.Models
         [StringLength(100)]
         public string Email { get; set; } = string.Empty;
 
-        [StringLength(60)]
+        [StringLength(255)]
         public string Password { get; set; } = string.Empty;
 
         public DateTime Created_Date { get; set; } = DateTime.Now;
@@ -48,17 +48,5 @@ namespace ImagineDreams.Models
                 Password = "************"
             };
         }
-    }
-
-    public class CreateUser
-    {
-        [Required(ErrorMessage = "The Firstname must be specified.")]
-        public string Fullname { get; set; } = default!;
-
-        [RegularExpression("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", ErrorMessage = "It is not a correct email.")]
-        public string Email { get; set; } = default!;
-
-        [Required(ErrorMessage = "The Password must be specified.")]
-        public string Password { get; set; } = default!;
     }
 }

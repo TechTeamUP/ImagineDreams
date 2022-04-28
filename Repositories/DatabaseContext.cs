@@ -18,5 +18,7 @@ namespace ImagineDreams.Repositories
 
         public DbSet<SalesEntity> Sales { set; get; } = default!;
 
+        public DbSet<StatesSale> StatesSale { set; get; } = default!;
+
     }
 }

@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
+using System.Text.Json;
+using ImagineDreams.Models;
+using ImagineDreams.Request;
 
 
 namespace ImagineDreams.Controllers
-{   
-    [ApiController]
-    [Route("service/product")]
-    public class ProductController: Controller
+{
+   [ApiController]
+    [Route("product/[controller]")]
+    public class ProductController : Controller
     {
         private readonly IProductServices _productServices;
         public ProductController(IProductServices productServices)
@@ -15,21 +18,17 @@ namespace ImagineDreams.Controllers
             _productServices = productServices;
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> createProduct(CreateProduct product)
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> createProduct(ProductCreateRequest product)
         {
-            try
-            {
-                ProductEntity response = await _productServices.createProduct(product);
-                return new ObjectResult("Product created successfully.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var response = await _productServices.createProduct(product);
+            HttpContext.Session.SetString("CustomerSession", JsonSerializer.Serialize(response));
+            return new ObjectResult(response);
         }
 
-        
+
         [HttpGet("list")]
         public async Task<IActionResult> listProduct()
         {
@@ -54,7 +53,7 @@ namespace ImagineDreams.Controllers
                 return Ok(response);
             }
             catch (Exception)
-            {   
+            {
                 return BadRequest("Producto not found.");
             }
         }
