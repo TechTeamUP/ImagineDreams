@@ -1,0 +1,63 @@
+<section class="ae-container-fluid rk-main">
+  <div class="main-container">
+    <div class="item-info">
+      <div class="column1">
+        <div class="user-details">
+          <div class="user-img">
+            <img class="img" src="{{ image }}" alt="" />
+            <h2>{{ fullName }}</h2>
+            <p>{{ nickname }}</p>
+          </div>
+          <hr class="solid" />
+          <h2 class="titleUser">Sold Items</h2>
+          <div class="progressSoldItems">
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="50"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 50%"
+                ></div>
+              </div>
+              <h3 class="soldItems">{{ soldItems }}</h3>
+          </div>
+          <hr class="solid" />
+          <div class="detailsUser">
+                <div class="detailsUserCol1">
+                    <h3 class="detailsUserCol1Title">First Name</h3>
+                    <h3 class="detailsUserCol1Title">Last Name</h3>
+                    <h3 class="detailsUserCol1Title">Age</h3>
+                    <h3 class="detailsUserCol1Title">City</h3>
+                </div>
+
+                <div class="detailsUserCol2">
+                    <h3 class="detailsUserCol2Title"> {{firstName}} </h3>
+                <h3 class="detailsUserCol2Title"> {{lastName}} </h3>
+                <h3 class="detailsUserCol2Title">{{age}}</h3>
+                <h3 class="detailsUserCol2Title">{{city}}</h3>
+                </div>
+          </div>
+          <hr class="solid" />
+          <h2 class="titleUser">Goals</h2>
+          <div class="statistics">
+            <div class="statisticsPorcent">
+              <div class="statisticsPorcentText">
+                <h2>12%</h2>
+                <h3>Last Week</h3>
+              </div>
+              <div class="statisticsPorcentText">
+                <h2>74%</h2>
+                <h3>Last Month</h3>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="column2">
+        <h1 class="titlePublished">Published Images</h1>
+      </div>
+    </div>
+  </div>
+</section>
