@@ -40,7 +40,7 @@ namespace ImagineDreams.Controllers
         [Route("get")]
         public async Task<IActionResult> getUserByEmail(string email)
         {
-            UserEntity result = await _userServices.getUserByEmail(email);
+            var result = await _userServices.getUserByEmail(email);
             return new ObjectResult(result);
         }
 

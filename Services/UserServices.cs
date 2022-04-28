@@ -9,7 +9,7 @@ namespace ImagineDreams.Services
 {
     public interface IUserServices
     {
-        Task<UserEntity> getUserByEmail(string email);
+        Task<UserEntity?> getUserByEmail(string email);
         Task<UserLoginResponse> login(UserLoginRequest u);
         Task<UserCreateResponse> createUser(UserCreateRequest u);
         Task<UserEntity> getUserById(int id);
@@ -42,7 +42,7 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<UserEntity> getUserByEmail(string email)
+        public async Task<UserEntity?> getUserByEmail(string email)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace ImagineDreams.Services
         Task<ProductEntity> getProduct(int id);
         Task<ProductCreateResponse> createProduct(ProductCreateRequest product);
         Task<IActionResult> listProduct();
-        Task<ProductEntity> updateProduct(ProductModel product);
+        Task<ProductEntity?> updateProduct(ProductModel product);
         Task<bool> deleteProduct(int id);
     }
 
@@ -31,7 +31,7 @@ namespace ImagineDreams.Services
         public async Task<ProductEntity> getProduct(int id)
         {
             var product = await _databaseConentext.Products.FirstOrDefaultAsync(x => x.Id == id);
-            if(product == null)
+            if (product == null)
             {
                 return product ?? throw new Exception("The provided product does not exist.");
             }
@@ -51,19 +51,6 @@ namespace ImagineDreams.Services
 
         public async Task<ProductCreateResponse> createProduct(ProductCreateRequest product)
         {
-            var p = getProduct(product.Id);
-            if (p != null)
-            {
-                return new ProductCreateResponse()
-                {
-                    Code = 400,
-                    Create = false,
-                    Message = "The product already exists!",
-                    Error = new List<string>(){
-                        "Bad Request"
-                    }
-                };
-            }
             ProductEntity entity = new ProductEntity()
             {
                 Name = product.Name,
@@ -88,12 +75,12 @@ namespace ImagineDreams.Services
 
         public async Task<IActionResult> listProduct()
         {
-            var response = _databaseConentext.Products.Select(x => x).ToList();
+            var response = await _databaseConentext.Products.ToListAsync();
             return new ObjectResult(response);
         }
 
 
-        public async Task<ProductEntity> updateProduct(ProductModel product)
+        public async Task<ProductEntity?> updateProduct(ProductModel product)
         {
             var entity = await getProduct(product.Id);
 
