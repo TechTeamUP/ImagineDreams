@@ -8,7 +8,10 @@ import { InfoPageService } from '../../services/info-page.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public infoService: InfoPageService, private route: Router) {}
+  constructor(
+    public infoService: InfoPageService, 
+    private route: Router
+    ) {}
 
   ngOnInit(): void {}
   
