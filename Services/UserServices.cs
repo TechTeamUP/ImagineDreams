@@ -4,6 +4,12 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ImagineDreams.Repositories;
 using ImagineDreams.Request;
 using ImagineDreams.Response;
+using ImagineDreams.Configuration;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace ImagineDreams.Services
 {
@@ -18,9 +24,11 @@ namespace ImagineDreams.Services
     public class UserServices : IUserServices
     {
         private readonly DatabaseConentext _userDatabaseContext;
-        public UserServices(DatabaseConentext userDatabaseContext)
+        private readonly AppSettings _appSettings;
+        public UserServices(IOptions<AppSettings> appSettings, DatabaseConentext userDatabaseContext)
         {
             _userDatabaseContext = userDatabaseContext;
+            _appSettings = appSettings.Value;
         }
 
 
@@ -33,6 +41,28 @@ namespace ImagineDreams.Services
         }
 
 
+        private string GetToken(string email)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secrect);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity
+                (
+                    new Claim[]
+                    {
+                        //new Claim(ClaimTypes.NameIdentifier, id.ToString()),
+                        new Claim(ClaimTypes.Email,email)
+                    }
+                ),
+                Expires = DateTime.UtcNow.AddMinutes(30),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
         public string decrypt(string str)
         {
             string result = string.Empty;
@@ -44,15 +74,8 @@ namespace ImagineDreams.Services
 
         public async Task<UserEntity?> getUserByEmail(string email)
         {
-            try
-            {
-                var x =  await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
-                return x;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            var x = await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+            return x;
         }
 
         public async Task<UserEntity> getUserById(int id)
@@ -68,7 +91,7 @@ namespace ImagineDreams.Services
 
         public async Task<UserLoginResponse> login(UserLoginRequest u)
         {
-            var user = getUserByEmail(u.Email);
+            var user = await getUserByEmail(u.Email);
             if (user == null)
             {
                 return new UserLoginResponse()
@@ -105,7 +128,8 @@ namespace ImagineDreams.Services
                 Error = new List<string>()
                 {
                     "Ok"
-                }
+                },
+                Token = GetToken(u.Email)
             };
         }
 

@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
 using ImagineDreams.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ImagineDreams.Controllers
 {
     [ApiController]
     [Route("service/[controller]")]
+    
     public class UserController : Controller
     {
         private readonly IUserServices _userServices;
@@ -38,6 +40,7 @@ namespace ImagineDreams.Controllers
 
         [HttpGet]
         [Route("get")]
+        [Authorize]
         public async Task<IActionResult> getUserByEmail(string email)
         {
             var result = await _userServices.getUserByEmail(email);

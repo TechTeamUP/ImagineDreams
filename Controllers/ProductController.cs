@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
 using System.Text.Json;
-using ImagineDreams.Models;
-using ImagineDreams.Request;
 
+using ImagineDreams.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ImagineDreams.Controllers
-{
-   [ApiController]
+{   
+    [ApiController]
     [Route("product/[controller]")]
+    //[Authorize]
     public class ProductController : Controller
     {
         private readonly IProductServices _productServices;

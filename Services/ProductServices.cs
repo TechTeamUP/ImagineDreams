@@ -56,6 +56,7 @@ namespace ImagineDreams.Services
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
+                Img = product.Img,
                 Stock = product.Stock,
                 CategoryId = product.CategoryId,
                 UserId = product.UserId
