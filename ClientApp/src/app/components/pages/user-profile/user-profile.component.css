@@ -1,0 +1,148 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 9.02vw;
+  margin-left: 9.02vw;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.column1 {
+  display: flex;
+  width: 23.82vw;
+  /* height: 100vh; */
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.column2 {
+  display: flex;
+  flex-direction: column;
+  width: 58.125vw;
+  /* height: 100vh; */
+  /* align-items: center; */
+  padding-left: 4.236vw;
+
+}
+
+.img {
+  margin-top: 100px;
+  height: 10.9vw;
+  width: 10.9vw;
+  border-radius: 50%;
+  object-fit: fill;
+  margin-bottom: 26px;
+}
+
+.user-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32.5px;
+}
+
+.solid {
+  width: 23.82vw;
+  border-top: 2px solid rgba(99, 99, 99, 0.5);
+  margin-bottom: 20px;
+}
+
+.progress {
+  width: 16.18vw;
+  margin-right: 13px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(159, 194, 229, 0.8) 35%,
+    rgba(15, 102, 190, 0.5) 100%
+  );
+  border-radius: 10px;
+}
+.progress-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 41, 212, 1) 0%,
+    rgba(15, 102, 190, 0.7) 100%
+  );
+  border-radius: 10px;
+}
+.soldItems {
+  margin: 0;
+}
+.progressSoldItems {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  margin-left: 39px;
+  margin-bottom: 26.5px;
+}
+
+.titleUser {
+  margin-left: 39px;
+}
+
+.user-details {
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.detailsUserCol1 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.detailsUserCol2 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: flex-end;
+  margin-right: 39px;
+}
+
+.detailsUserCol1Title {
+  margin-bottom: 14px;
+  margin-left: 39px;
+  /* font-size: 1.5rem !important; */
+  color: #636363;
+}
+
+.detailsUserCol2Title {
+  margin-bottom: 14px;
+  color: #000;
+}
+
+.detailsUser {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: column;
+}
+
+.statisticsPorcent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 14px;
+  justify-content: space-evenly;
+}
+
+.statisticsPorcentText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titlePublished{
+  margin-top: 15px ;
+}
