@@ -33,10 +33,8 @@ namespace ImagineDreams.Services
             {
                 Quantity = sales.Quantity,
                 Total = sales.Total,
-                Created_date = sales.Created_date,
-                UserIdBuyer = sales.UserIdBuyer,
-                ProductId = sales.ProductId,
-                state = "paid"
+                UserId = sales.UserIdBuyer,
+                ProductId = sales.ProductId
 
             };
 

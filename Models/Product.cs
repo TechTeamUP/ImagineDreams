@@ -60,42 +60,5 @@ namespace ImagineDreams.Models
 
         public ICollection<SalesEntity> Sale { get; set; } = default!;
 
-        public ProductModel ToModel()
-        {
-            return new ProductModel()
-            {
-                Name = Name,
-                Description = Description,
-                Price = Price,
-                Stock = Stock,
-                Img = Img,
-                CategoryId = CategoryId
-            };
-        }
-    }
-
-    public class CreateProduct
-    {
-
-        [StringLength(60), Required]
-        public string Name { get; set; } = default!;
-
-        [StringLength(255), Required]
-        public string? Description { get; set; }
-
-        [Required]
-        public string Img { get; set; } = default!;
-
-        [Required]
-        public float Price { get; set; } = default!;
-
-        [Required]
-        public int Stock { get; set; } = default!;
-
-        [Required]
-        public int UserId { get; set; }
-
-        [Required]
-        public int CategoryId { get; set; }
     }
 }
