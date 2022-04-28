@@ -15,7 +15,7 @@ namespace ImagineDreams.Services
 {
     public interface IUserServices
     {
-        Task<UserEntity?> getUserByEmail(string email);
+        Task<UserGetResponse?> getUserByEmail(string email);
         Task<UserLoginResponse> login(UserLoginRequest u);
         Task<UserCreateResponse> createUser(UserCreateRequest u);
         Task<UserEntity> getUserById(int id);
@@ -72,10 +72,16 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<UserEntity?> getUserByEmail(string email)
+        public async Task<UserGetResponse?> getUserByEmail(string email)
         {
             var x = await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
-            return x;
+            return new UserGetResponse()
+            {
+                Id = x.Id,
+                Fullname = x.Fullname,
+                Email = x.Email,
+                Password = x.Password
+            };
         }
 
         public async Task<UserEntity> getUserById(int id)

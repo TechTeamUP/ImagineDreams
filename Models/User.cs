@@ -39,9 +39,9 @@ namespace ImagineDreams.Models
         
         public ICollection<SalesEntity> Sale { get; set; } = default!;
 
-        public UsersModel ToModel()
+        public UserEntity ToModel()
         {
-            return new UsersModel()
+            return new UserEntity()
             {
                 Fullname = Fullname,
                 Email = Email,
