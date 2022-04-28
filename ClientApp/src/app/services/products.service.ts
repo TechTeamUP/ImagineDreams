@@ -47,10 +47,13 @@ export class ProductsService {
   private filterProducts(term: string) {
     this.filteredProducts = [];
     term = term.toLocaleLowerCase();
+    console.log("test: ",this.filteredProducts)
     this.products.forEach((prod) => {
       // const authorLower = prod.author.toLocaleLowerCase();
       if (prod.category.indexOf(term) >= 0) {
+        console.log("ola");
         this.filteredProducts.push(prod);
+        
       }
     });
   }
