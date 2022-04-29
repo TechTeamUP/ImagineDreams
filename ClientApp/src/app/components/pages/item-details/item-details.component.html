@@ -4,7 +4,7 @@
             <div class="column1">
                 <img class="item-img" [src]="product.url_img" alt="">
             </div>
-            <div class="column2">
+            <form class="column2">
                 <div class="item-details">
                     <h1 class="item-title">{{product.title}}</h1>
                     <p class="item-description">{{product.description}}</p>
@@ -22,10 +22,10 @@
                             <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm"
                                 (click)="increaseQuantity()">
                         </div>
-                        <button class="btn btn-primary">Buy Artwork</button>
+                        <button class="btn btn-primary" (click)="sales(product, quantityValue)">Buy Artwork</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="item-review">
             <h1 class="section-title">Reviews</h1>

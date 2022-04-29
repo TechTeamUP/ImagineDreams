@@ -46,7 +46,7 @@ namespace ImagineDreams.Services
         {
             try
             {
-                var x =  await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+                 UserEntity? x =  await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
                 return x;
             }
             catch (Exception)

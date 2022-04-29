@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -15,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ItemDetailsComponent } from './components/pages/item-details/item-details.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -30,6 +28,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ItemDetailsComponent,
     SearchComponent,
     UserProfileComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,9 +36,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgxChartsModule,
-    BrowserAnimationsModule
+    ReactiveFormsModule
   
   ],
   providers: [],

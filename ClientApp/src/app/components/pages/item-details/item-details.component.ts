@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../services/products.service';
 import { ProductDescription } from '../../../interfaces/item-product.interface';
+import { SalesService } from 'src/app/services/sales.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-itemdetails',
@@ -11,8 +13,9 @@ import { ProductDescription } from '../../../interfaces/item-product.interface';
 export class ItemDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    public productsService: ProductsService
-  ) {}
+    public productsService: ProductsService,
+    private _SalesService: SalesService
+  ) { }
 
   @Input() item: any;
   product: ProductDescription = {};
@@ -52,7 +55,7 @@ export class ItemDetailsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    
+
     this.route.params.subscribe((params) => {
       this.productsService
         .getProduct(params['id'])
@@ -65,7 +68,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   // Variables
-  quantityValue: number = 0;
+  quantityValue: number = 1;
 
   // // Methods
   initData() {
@@ -85,8 +88,23 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   decrementQuantity() {
-    if (this.quantityValue > 0) {
+    if (this.quantityValue > 1) {
       this.quantityValue--;
     }
+  }
+
+  sales(itemProduct:any, quantity:any) {
+    
+    var body =
+    {
+      Quantity: quantity,
+      Total: itemProduct.price,
+      UserId: 1,
+      ProductId: 1,
+      StateId: 1
+    }
+    this._SalesService.sales(body)
+    console.log(body)
+
   }
 }
