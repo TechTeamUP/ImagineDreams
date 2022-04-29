@@ -32,9 +32,10 @@ namespace ImagineDreams.Services
             SalesEntity entity = new SalesEntity()
             {
                 Quantity = sales.Quantity,
-                Total = sales.Total,
+                Total = sales.Total*sales.Quantity,
                 UserId = sales.UserIdBuyer,
-                ProductId = sales.ProductId
+                ProductId = sales.ProductId,
+                StateId = sales.StateId
 
             };
 
