@@ -18,6 +18,7 @@ import { UserProfileComponent } from './components/pages/user-profile/user-profi
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ItemDetailsComponent,
     SearchComponent,
     UserProfileComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,8 +40,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxChartsModule,
-    BrowserAnimationsModule
+    NgxChartsModule
   
   ],
   providers: [],
