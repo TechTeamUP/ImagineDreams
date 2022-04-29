@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class SalesService {
 
+  
   private salesURL = "https://localhost:7200/service/sales/create"
 
   constructor(private http: HttpClient) { }
