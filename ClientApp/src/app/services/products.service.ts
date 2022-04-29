@@ -9,6 +9,7 @@ export class ProductsService {
   load = true;
   products: Products[] = [];
   filteredProducts: Products[] = [];
+  filteredProductsByUsers: Products[] = [];
 
   constructor(private http: HttpClient) {
     this.loadProducts();
@@ -54,6 +55,15 @@ export class ProductsService {
         console.log("ola");
         this.filteredProducts.push(prod);
         
+      }
+    });
+  }
+
+  private filterProductsByUser(user: string){
+    this.filteredProductsByUsers = [];
+    this.products.forEach((prod) => {
+      if (prod.author === user) {
+        this.filteredProductsByUsers.push(prod);
       }
     });
   }
