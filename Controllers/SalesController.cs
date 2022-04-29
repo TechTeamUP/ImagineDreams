@@ -6,7 +6,7 @@ using ImagineDreams.Services;
 namespace ImagineDreams.Controllers
 {   
     [ApiController]
-    [Route("service/sales")]
+    [Route("service/[controller]")]
     public class SalesController: Controller
     {
         private readonly ISalesServices _SalesServices;
@@ -15,7 +15,7 @@ namespace ImagineDreams.Controllers
             _SalesServices = SalesServices;
         }
 
-        [HttpPost("create")]
+        [HttpPost][Route("create")]
         public async Task<IActionResult> createSales(CreateSale sales)
         {
             try

@@ -56,6 +56,7 @@ namespace ImagineDreams.Models
                 StateId = StateId,
                 UserId = UserId,
                 ProductId = ProductId
+                
             };
         }
     }
@@ -73,6 +74,8 @@ namespace ImagineDreams.Models
 
         [Required]
         public int ProductId { get; set; }
+
+         public int StateId { get; set; }
 
     }
 }

@@ -51,19 +51,7 @@ namespace ImagineDreams.Services
 
         public async Task<ProductCreateResponse> createProduct(ProductCreateRequest product)
         {
-            var p = getProduct(product.Id);
-            if (p != null)
-            {
-                return new ProductCreateResponse()
-                {
-                    Code = 400,
-                    Create = false,
-                    Message = "The product already exists!",
-                    Error = new List<string>(){
-                        "Bad Request"
-                    }
-                };
-            }
+            
             ProductEntity entity = new ProductEntity()
             {
                 Name = product.Name,
