@@ -15,8 +15,8 @@ namespace ImagineDreams.Services
 {
     public interface IUserServices
     {
-        Task<UserGetResponse?> getUserByEmail(string email);
-        Task<UserLoginResponse> login(UserLoginRequest u);
+        Task<UserEntity?> getUserByEmail(string email);
+        Task<UserLoginResponse?> login(UserLoginRequest u);
         Task<UserCreateResponse> createUser(UserCreateRequest u);
         Task<UserEntity> getUserById(int id);
     }
@@ -72,16 +72,10 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<UserGetResponse?> getUserByEmail(string email)
+        public async Task<UserEntity?> getUserByEmail(string email)
         {
             var x = await _userDatabaseContext.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
-            return new UserGetResponse()
-            {
-                Id = x.Id,
-                Fullname = x.Fullname,
-                Email = x.Email,
-                Password = x.Password
-            };
+            return x;
         }
 
         public async Task<UserEntity> getUserById(int id)
@@ -95,46 +89,22 @@ namespace ImagineDreams.Services
         }
 
 
-        public async Task<UserLoginResponse> login(UserLoginRequest u)
+        public async Task<UserLoginResponse?> login(UserLoginRequest u)
         {
             var user = await getUserByEmail(u.Email);
             if (user == null)
             {
-                return new UserLoginResponse()
-                {
-                    Code = 404,
-                    Login = false,
-                    Messagge = "The provided Email does not exist!",
-                    Error = new List<string>()
-                    {
-                        "Not found"
-                    }
-                };
+                return null;
             }
 
             var userC = await _userDatabaseContext.Users.FirstOrDefaultAsync(x => x.Email == u.Email.ToLower() && x.Password == encrypt(u.Password));
             if (userC == null)
             {
-                return new UserLoginResponse()
-                {
-                    Code = 400,
-                    Login = false,
-                    Messagge = "The Email and/or password are not correct!",
-                    Error = new List<string>()
-                    {
-                        "Bad request"
-                    }
-                };
+                return null;
             }
             return new UserLoginResponse()
             {
-                Code = 200,
-                Login = true,
-                Messagge = "You have successfully logged in!",
-                Error = new List<string>()
-                {
-                    "Ok"
-                },
+                Email = u.Email,
                 Token = GetToken(u.Email)
             };
         }

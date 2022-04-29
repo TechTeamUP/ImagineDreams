@@ -20,18 +20,19 @@ export class LoginComponent implements OnInit {
   });
 
   logIn() {
-    var body =
-    {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    }
-    this._UserService.logIn(body.email, body.password,body).subscribe(data => {
-      var closeBtn = document.getElementById("loginModal");
-      closeBtn?.click();
-    }, error =>{
+    var email = this.loginForm.value.email;
+    var password = this.loginForm.value.password;
+
+    this._UserService.logIn(email, password).subscribe(response => {
+      if (response.code === 200) {
+        var closeBtn = document.getElementById("loginModal");
+        closeBtn?.click();
+        console.log(response);
+      }
+    }, error => {
       console.log(error)
     }
-    ) 
+    )
   }
 
 }
