@@ -15,6 +15,7 @@ import { ItemDetailsComponent } from './components/pages/item-details/item-detai
 import { SearchComponent } from './components/pages/search/search.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
