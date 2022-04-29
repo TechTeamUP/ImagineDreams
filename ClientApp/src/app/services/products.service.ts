@@ -9,6 +9,7 @@ export class ProductsService {
   load = true;
   products: Products[] = [];
   filteredProducts: Products[] = [];
+  filteredProductsByUsers: Products[] = [];
 
   constructor(private http: HttpClient) {
     this.loadProducts();
@@ -47,10 +48,22 @@ export class ProductsService {
   private filterProducts(term: string) {
     this.filteredProducts = [];
     term = term.toLocaleLowerCase();
+    console.log("test: ",this.filteredProducts)
     this.products.forEach((prod) => {
       // const authorLower = prod.author.toLocaleLowerCase();
       if (prod.category.indexOf(term) >= 0) {
+        console.log("ola");
         this.filteredProducts.push(prod);
+        
+      }
+    });
+  }
+
+  private filterProductsByUser(user: string){
+    this.filteredProductsByUsers = [];
+    this.products.forEach((prod) => {
+      if (prod.author === user) {
+        this.filteredProductsByUsers.push(prod);
       }
     });
   }

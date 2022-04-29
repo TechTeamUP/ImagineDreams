@@ -14,7 +14,9 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemDetailsComponent } from './components/pages/item-details/item-details.component';
 import { SearchComponent } from './components/pages/search/search.component';
-import { ImageComponent } from './images/image/image.component';
+import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ImageComponent } from './images/image/image.component';
     AboutComponent,
     ItemDetailsComponent,
     SearchComponent,
-    ImageComponent
+    UserProfileComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,7 +39,9 @@ import { ImageComponent } from './images/image/image.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

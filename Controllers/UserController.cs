@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ImagineDreams.Models;
 using ImagineDreams.Services;
+using ImagineDreams.Request;
 
 namespace ImagineDreams.Controllers
 {
     [ApiController]
-    [Route("service/user")]
+    [Route("service/[controller]")]
     public class UserController : Controller
     {
         private readonly IUserServices _userServices;
@@ -14,50 +15,41 @@ namespace ImagineDreams.Controllers
             _userServices = userServices;
         }
 
-
-        [HttpPost("sign_up")]
-        public async Task<IActionResult> createUser(CreateUser user)
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> createUser([FromBody] UserCreateRequest user)
         {
-            try
+            var result = await _userServices.createUser(user);
+            if(result.Code == 400)
             {
-                UserEntity result = await _userServices.createUser(user);
-                return new CreatedResult($"https://localhost:7200/api/customer/{result.Email}", null);
+                return BadRequest(result);
             }
-            catch (Exception)
-            {
-                return BadRequest("Email is already in use.");
-            }
+            return new ObjectResult(result);
         }
 
 
-        [HttpPost("log_in")]
-        public async Task<IActionResult> login(string mail, string password)
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> login([FromBody] UserLoginRequest u)
         {
-            try
-            {
-                UserEntity result = await _userServices.login(mail, password);
-                return new OkObjectResult(result.ToModel());
-            }
-            catch (Exception ex)
-            {
-
-                return Unauthorized(ex.Message);
-            }
+            var result = await _userServices.login(u);
+            return new OkObjectResult(result);
         }
 
-        [HttpGet("get")]
+        [HttpGet]
+        [Route("get")]
         public async Task<IActionResult> getUserByEmail(string email)
         {
-            try
-            {
-                UserEntity result = await _userServices.getUser(email);
-                return new ObjectResult(result.ToModel());
-            }
-            catch (Exception ex)
-            {
+            UserEntity result = await _userServices.getUserByEmail(email);
+            return new ObjectResult(result);
+        }
 
-                return BadRequest(ex.Message);
-            }
+        [HttpGet]
+        [Route("test")]
+        public async Task<IActionResult> test(int id)
+        {
+            UserEntity result = await _userServices.getUserById(id);
+            return new ObjectResult(result);
         }
     }
 }
