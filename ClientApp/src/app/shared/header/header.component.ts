@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {}
+
+  userLoggedIn: boolean = true;
   
   searchProduct(term: string) {
     console.log("test: ",term);
