@@ -9,7 +9,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  constructor(private _UserService: UserService) { }
+  constructor(private _UserService: UserService) {
+    if (_UserService.userData) {
+      var closeBtn = document.getElementById("loginModal");
+      closeBtn?.click();
+    }
+  }
 
   ngOnInit(): void {
   }
