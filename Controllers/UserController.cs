@@ -41,6 +41,7 @@ namespace ImagineDreams.Controllers
             {
                 Response.Code = 400;
                 Response.Message = "The Email and/or Password are not correct!";
+                return BadRequest(Response);
             }
             Response.Code = 200;
             Response.Data = result;
