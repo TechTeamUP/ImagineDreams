@@ -93,8 +93,8 @@ export class ItemDetailsComponent implements OnInit {
     }
   }
 
-  sales(itemProduct:any, quantity:any) {
-    
+  sales(itemProduct: any, quantity: any) {
+
     var body =
     {
       Quantity: quantity,
@@ -103,8 +103,11 @@ export class ItemDetailsComponent implements OnInit {
       ProductId: 1,
       StateId: 1
     }
-    this._SalesService.sales(body)
-    console.log(body)
-
+    this._SalesService.sales(body).subscribe(response => {
+      console.log("pase sapoprro");
+    }, error => {
+      console.log(error);
+    }
+    )
   }
 }
